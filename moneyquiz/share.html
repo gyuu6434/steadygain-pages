@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>머니퀴즈 - 나의 금융 IQ 결과</title>
+
+<!-- Default OG tags (overridden by JS for display, but crawlers see these) -->
+<meta property="og:title" content="나의 금융 IQ를 테스트해보세요!" id="og-title">
+<meta property="og:description" content="머니퀴즈에서 금융 상식을 테스트하고 IQ 등급을 받아보세요." id="og-desc">
+<meta property="og:image" content="https://gyuu6434.github.io/steadygain-pages/moneyquiz/og-B.png" id="og-image">
+<meta property="og:url" content="https://gyuu6434.github.io/steadygain-pages/moneyquiz/share.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #F9FAFB;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.emoji { font-size: 64px; margin-bottom: 12px; }
+.grade-label {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.percentile {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.score-box {
+  background: #F2F4F6;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.score-box .category {
+  font-size: 14px;
+  color: #8B95A1;
+  margin-bottom: 4px;
+}
+.score-box .score {
+  font-size: 32px;
+  font-weight: 800;
+  color: #191F28;
+}
+.score-box .score span { color: #8B95A1; font-weight: 500; }
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #3182F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cta-btn:hover { background: #1B6EE0; }
+.sub-text {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #8B95A1;
+}
+.logo {
+  margin-top: 32px;
+  font-size: 14px;
+  color: #B0B8C1;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="card" id="result-card">
+  <div class="emoji" id="emoji"></div>
+  <div class="grade-label" id="grade-label"></div>
+  <div class="percentile" id="percentile"></div>
+  <div class="score-box">
+    <div class="category" id="category"></div>
+    <div class="score" id="score"></div>
+  </div>
+  <a class="cta-btn" id="cta-btn" href="https://toss.im">
+    토스에서 머니퀴즈 도전하기
+  </a>
+  <div class="sub-text">토스 앱에서 '머니퀴즈' 검색</div>
+</div>
+<div class="logo">MoneyQuiz</div>
+
+<script>
+const GRADES = {
+  S: { emoji: '\u{1F9E0}', label: 'S\uAE09 \uAE08\uC735 \uC804\uBB38\uAC00', percentile: '\uC0C1\uC704 5%', color: '#FF6B00' },
+  A: { emoji: '\u{1F48E}', label: 'A\uAE09 \uAE08\uC735 \uACE0\uC218', percentile: '\uC0C1\uC704 15%', color: '#3182F6' },
+  B: { emoji: '\u{1F4CA}', label: 'B\uAE09 \uAE08\uC735 \uC6B0\uB4F1\uC0DD', percentile: '\uC0C1\uC704 30%', color: '#27C281' },
+  C: { emoji: '\u{1F4DA}', label: 'C\uAE09 \uAE08\uC735 \uD559\uC2B5\uC790', percentile: '\uC0C1\uC704 55%', color: '#FF8C00' },
+  D: { emoji: '\u{1F331}', label: 'D\uAE09 \uAE08\uC735 \uC785\uBB38\uC790', percentile: '\uC0C1\uC704 80%', color: '#8B95A1' },
+};
+const CATEGORIES = { stocks: '\uC8FC\uC2DD', economics: '\uACBD\uC81C', realestate: '\uBD80\uB3D9\uC0B0', tax: '\uC138\uAE08' };
+
+const params = new URLSearchParams(location.search);
+const g = params.get('g') || 'B';
+const s = params.get('s') || '7';
+const t = params.get('t') || '10';
+const c = params.get('c') || 'economics';
+
+const grade = GRADES[g] || GRADES.B;
+const catName = CATEGORIES[c] || c;
+
+document.getElementById('emoji').textContent = grade.emoji;
+document.getElementById('grade-label').textContent = grade.label;
+document.getElementById('grade-label').style.color = grade.color;
+document.getElementById('percentile').textContent = grade.percentile;
+document.getElementById('percentile').style.color = grade.color;
+document.getElementById('category').textContent = catName;
+document.getElementById('score').innerHTML = s + ' <span>/ ' + t + '</span>';
+document.getElementById('result-card').style.borderTop = '4px solid ' + grade.color;
+
+// Deep link to Toss app
+document.getElementById('cta-btn').href = 'supertoss://miniapp/money-quiz-app';
+</script>
+
+</body>
+</html>

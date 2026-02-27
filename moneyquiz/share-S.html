@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 나의 금융 IQ: S급 금융 전문가 (상위 5%)</title>
+
+<meta property="og:title" content="🧠 나의 금융 IQ: S급 금융 전문가 (상위 5%)">
+<meta property="og:description" content="머니퀴즈에서 당신의 금융 IQ를 테스트해보세요!">
+<meta property="og:image" content="https://gyuu6434.github.io/steadygain-pages/moneyquiz/og-S.png">
+<meta property="og:url" content="https://gyuu6434.github.io/steadygain-pages/moneyquiz/share-S.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🧠 나의 금융 IQ: S급 금융 전문가 (상위 5%)">
+<meta name="twitter:description" content="머니퀴즈에서 당신의 금융 IQ를 테스트해보세요!">
+<meta name="twitter:image" content="https://gyuu6434.github.io/steadygain-pages/moneyquiz/og-S.png">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #F9FAFB;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border-top: 4px solid #FF6B00;
+  padding: 40px 32px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.emoji { font-size: 64px; margin-bottom: 12px; }
+.grade-label {
+  font-size: 28px;
+  font-weight: 800;
+  color: #FF6B00;
+  margin-bottom: 4px;
+}
+.percentile {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FF6B00;
+  margin-bottom: 20px;
+}
+.score-box {
+  background: #F2F4F6;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.score-box .category {
+  font-size: 14px;
+  color: #8B95A1;
+  margin-bottom: 4px;
+}
+.score-box .score {
+  font-size: 32px;
+  font-weight: 800;
+  color: #191F28;
+}
+.score-box .score span { color: #8B95A1; font-weight: 500; }
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #3182F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cta-btn:hover { background: #1B6EE0; }
+.sub-text {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #8B95A1;
+}
+.logo {
+  margin-top: 32px;
+  font-size: 14px;
+  color: #B0B8C1;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="emoji">🧠</div>
+  <div class="grade-label">S급 금융 전문가</div>
+  <div class="percentile">상위 5%</div>
+  <div class="score-box">
+    <div class="category" id="category-display">금융</div>
+    <div class="score" id="score-display">— <span>/ —</span></div>
+  </div>
+  <a class="cta-btn" href="supertoss://miniapp/money-quiz-app">
+    토스에서 머니퀴즈 도전하기
+  </a>
+  <div class="sub-text">토스 앱에서 '머니퀴즈' 검색</div>
+</div>
+<div class="logo">MoneyQuiz</div>
+
+<script>
+const CATEGORIES = { stocks: '주식', economics: '경제', realestate: '부동산', tax: '세금' };
+const params = new URLSearchParams(location.search);
+const s = params.get('s');
+const t = params.get('t');
+const c = params.get('c');
+
+if (s && t) {
+  const catName = CATEGORIES[c] || c || '금융';
+  document.getElementById('category-display').textContent = catName;
+  document.getElementById('score-display').innerHTML = s + ' <span>/ ' + t + '</span>';
+}
+</script>
+
+</body>
+</html>
